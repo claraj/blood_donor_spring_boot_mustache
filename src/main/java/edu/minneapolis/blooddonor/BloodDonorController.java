@@ -1,28 +1,17 @@
 package edu.minneapolis.blooddonor;
 
 import jakarta.validation.Valid;
-import org.springframework.boot.Banner;
-import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-
 
 @Controller
 public class BloodDonorController {
@@ -64,15 +53,15 @@ public class BloodDonorController {
             List<String> ineligibleReasons = new ArrayList<>();
 
             if (donor.getAge() < 17) {
-                ineligibleReasons.add("Age must be greater than 17");
+                ineligibleReasons.add("Age must be 17 or older");
             }
 
             if (donor.getWeight() < 110) {
-                ineligibleReasons.add("Weight must be greater than 110 pounds");
+                ineligibleReasons.add("Weight must be 110 pounds or more");
             }
 
             if (ineligibleReasons.isEmpty()) {
-                resultMessage = "You are eligible to donate blood";
+                resultMessage = "You may be eligible to donate blood";
             } else {
                 resultMessage = "You are not eligible to donate blood";
             }

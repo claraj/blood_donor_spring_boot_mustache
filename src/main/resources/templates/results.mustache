@@ -3,24 +3,31 @@
 <h2>Results</h2>
 
 <div id="result-container">
-<h3>Your data</h3>
+    <h3>Your data</h3>
 
-<p>Age: {{ donor.age }} years</p>
-<p>Weight: {{ donor.weight }} pounds</p>
+    <p>Age: {{ donor.age }} years</p>
+    <p>Weight: {{ donor.weight }} pounds</p>
 
-<h3>Your results</h3>
+    <h3>Your results</h3>
     <p>{{ resultMessage }}</p>
-<ul>
 
-{{#ineligibleReasons}}
-    <li>{{.}}</li>
-{{/ineligibleReasons}}
-</ul>
+    <!--  Display a list of ineligible reasons, if there are any  -->
+    <ul>
+        {{#ineligibleReasons}}
+            <li>{{.}}</li>
+        {{/ineligibleReasons}}
+    </ul>
 
-    </div>
+    <!--  otherwise, display link so user can check other eligibility criteria -->
+    {{^ineligibleReasons}}
+        <p><a href="https://www.mbc.org/donate-blood/donor-eligibility/">Continue checking your eligibility</a></p>
+    {{/ineligibleReasons}}
+
+
+</div>
 
 <div id="navigation">
-<a href="/">Return to the home page</a>
+    <a href="/">Return to the home page</a>
 </div>
 
 {{> footer }}
