@@ -55,4 +55,22 @@ button:hover {
     background-color: #a30000; /* darker red */
 }
 
+.error {
+    color: red;
+    font-weight: bold;
+}
 
+#result-container {
+        max-width: 400px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+
+}
+
+#navigation {
+    padding: 10px;
+    text-align: center;
+}

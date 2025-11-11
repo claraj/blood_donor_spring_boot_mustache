@@ -2,17 +2,25 @@
 
 <h2>Results</h2>
 
+<div id="result-container">
 <h3>Your data</h3>
 
 <p>Age: {{ donor.age }} years</p>
 <p>Weight: {{ donor.weight }} pounds</p>
 
 <h3>Your results</h3>
-
-
     <p>{{ resultMessage }}</p>
+<ul>
 
+{{#ineligibleReasons}}
+    <li>{{.}}</li>
+{{/ineligibleReasons}}
+</ul>
 
+    </div>
+
+<div id="navigation">
 <a href="/">Return to the home page</a>
+</div>
 
 {{> footer }}
