@@ -1,0 +1,22 @@
+{{> header }}
+
+<h2>Results</h2>
+
+<h3>Your data</h3>
+
+<p>Height: {{ age }} years</p>
+<p>Weight: {{ weight }} pounds</p>
+
+<h3>Your results</h3>
+
+{{#validData}}
+    <p>{{ resultMessage }}</p>
+{{/validData}}
+
+{{^validData}}
+    <p>{{ errorMessage }}</p>
+{{/validData}}
+
+<a href="/">Return to the home page</a>
+
+{{> footer }}

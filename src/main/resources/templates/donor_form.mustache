@@ -1,0 +1,17 @@
+
+{{> header}}
+
+<h2>Blood Donor Eligibility Check</h2>
+
+<form method="POST" action="/submitBloodForm">
+    <label for="age">Age in years</label>
+    <input id="age" name="age">
+
+    <label for="weight">Weight in pounds</label>
+    <input id="weight" name="weight" >
+
+    <button type="submit">Check</button>
+
+</form>
+
+{{> footer}}
