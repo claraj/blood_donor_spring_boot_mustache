@@ -4,11 +4,17 @@
 <h2>Blood Donor Eligibility Check</h2>
 
 <form method="POST" action="/submitBloodForm">
+
+    {{#validationErrors}}
+        <p style="color: red;">{{.}}</p>
+    {{/validationErrors}}
+
+<!--      input names must match Java object fields -->
     <label for="age">Age in years</label>
-    <input id="age" name="age">
+    <input id="age" name="age" value="{{donor.age}}">
 
     <label for="weight">Weight in pounds</label>
-    <input id="weight" name="weight" >
+    <input id="weight" name="weight" value="{{donor.weight}}">
 
     <button type="submit">Check</button>
 

@@ -4,18 +4,14 @@
 
 <h3>Your data</h3>
 
-<p>Height: {{ age }} years</p>
-<p>Weight: {{ weight }} pounds</p>
+<p>Age: {{ donor.age }} years</p>
+<p>Weight: {{ donor.weight }} pounds</p>
 
 <h3>Your results</h3>
 
-{{#validData}}
-    <p>{{ resultMessage }}</p>
-{{/validData}}
 
-{{^validData}}
-    <p>{{ errorMessage }}</p>
-{{/validData}}
+    <p>{{ resultMessage }}</p>
+
 
 <a href="/">Return to the home page</a>
 
