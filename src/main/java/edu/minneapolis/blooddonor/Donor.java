@@ -5,6 +5,10 @@ import java.util.Objects;
 
 public class Donor {
 
+    @NotNull(message = "First name is required")
+    @NotBlank(message = "First name is required")
+    private String firstName;
+
     @NotNull(message = "Age is required")
     @Min(value = 0, message = "Age must be positive whole number")
     @Max(value = 130, message = "Age must be less than 130")
@@ -17,6 +21,20 @@ public class Donor {
 
     public Donor() {
         // no-argument constructor is required
+    }
+
+    public Donor(String firstName, Integer age, Integer weight) {
+        this.firstName = firstName;
+        this.age = age;
+        this.weight = weight;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public Integer getAge() {

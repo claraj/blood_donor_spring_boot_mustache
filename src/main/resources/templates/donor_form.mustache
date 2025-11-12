@@ -5,6 +5,13 @@
 <form method="POST" action="/submitDonorForm">
 
     <!-- HTML input names must match Java object fields -->
+    <label for="firstName">First name</label>
+    <input id="firstName" type="text" name="firstName" {{#donor.firstName}}value="{{donor.firstName}}"{{/donor.firstName}}>
+
+    {{#validationErrorMap.firstName}}
+        <div class="error">{{.}}</div>
+    {{/validationErrorMap.firstName}}
+
     <label for="age">Age in years</label>
     <input id="age" type="number" name="age" {{#donor.age}}value="{{donor.age}}"{{/donor.age}}>
 
