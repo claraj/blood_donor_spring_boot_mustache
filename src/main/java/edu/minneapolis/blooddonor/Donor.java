@@ -1,6 +1,8 @@
 package edu.minneapolis.blooddonor;
 import jakarta.validation.constraints.*;
 
+import java.util.Objects;
+
 public class Donor {
 
     @NotNull(message = "Age is required")
@@ -39,6 +41,15 @@ public class Donor {
                 "age=" + age +
                 ", weight=" + weight +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!Objects.equals(this.age, ((Donor) o).getAge())) return false;
+        if (!Objects.equals(this.weight, ((Donor) o).getWeight())) return false;
+        return true;
+
     }
 }
 

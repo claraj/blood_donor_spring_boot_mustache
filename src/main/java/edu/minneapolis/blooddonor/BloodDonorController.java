@@ -42,7 +42,7 @@ public class BloodDonorController {
             }
 
             System.out.print(validationErrorMap);  // {weight=Weight must be less than 600,age='Age must be positive whole number'}
-            model.addAttribute("validationErrors", bindingResult.getAllErrors());
+//            model.addAttribute("validationErrors", bindingResult.getAllErrors());
             model.addAttribute("validationErrorMap", validationErrorMap);
             System.out.println(bindingResult.getAllErrors());
             return "donor_form";  // automatically receives model
@@ -64,10 +64,11 @@ public class BloodDonorController {
                 resultMessage = "You may be eligible to donate blood";
             } else {
                 resultMessage = "You are not eligible to donate blood";
+                model.addAttribute("ineligibleReasons", ineligibleReasons);
+
             }
 
             model.addAttribute("donor", donor);
-            model.addAttribute("ineligibleReasons", ineligibleReasons);
             model.addAttribute("resultMessage", resultMessage);
 
             return "results";
