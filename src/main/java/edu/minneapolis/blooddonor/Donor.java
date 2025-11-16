@@ -7,23 +7,22 @@ public class Donor {
 
     @NotNull(message = "First name is required")
     @NotBlank(message = "First name is required")
+    @Size(min=2, max=40, message="Name must be at least 2 characters")
     private String firstName;
 
-    @NotNull(message = "Age is required")
-    @Min(value = 0, message = "Age must be positive whole number")
+    @Min(value = 0, message = "Age must be positive number")
     @Max(value = 130, message = "Age must be less than 130")
-    private Integer age;
+    private int age;
 
-    @NotNull(message = "Weight is required")
-    @Min(value = 0, message = "Weight must be a positive whole number")
+    @Min(value = 0, message = "Weight must be a positive number")
     @Max(value = 600, message = "Weight must be less than 600")
-    private Integer weight;
+    private int weight;
 
     public Donor() {
         // no-argument constructor is required
     }
 
-    public Donor(String firstName, Integer age, Integer weight) {
+    public Donor(String firstName, int age, int weight) {
         this.firstName = firstName;
         this.age = age;
         this.weight = weight;
@@ -37,19 +36,19 @@ public class Donor {
         this.firstName = firstName;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public Integer getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 

@@ -45,8 +45,8 @@ class MustacheTemplatesApplicationTests {
         for (Donor eligible: eligibleValues) {
             mvc.perform(post("/submitDonorForm")
                             .param("firstName", eligible.getFirstName())
-                            .param("age", eligible.getAge().toString())
-                            .param("weight", eligible.getWeight().toString()))
+                            .param("age", Integer.toString(eligible.getAge()))
+                            .param("weight", Integer.toString(eligible.getWeight())))
                     .andExpect(status().isOk())
                     .andExpect(view().name("results"))
                     .andExpect(model().attributeExists("donor"))

@@ -4,12 +4,10 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,54 +21,41 @@ public class BloodDonorController {
     }
 
     @PostMapping("/submitDonorForm")
-//    public String processDonorForm(Model model, @RequestParam("age") String ageString, @RequestParam("weight") String weightString) {
     public String processDonorForm(@Valid Donor donor, BindingResult bindingResult, Model model) {
 
-
-        System.out.println("DONOR " + donor);
-
+        // Are there validation errors?
         if (bindingResult.hasErrors()) {
-
-            Map<String, String> validationErrorMap = new HashMap<>();
-            for (FieldError error : bindingResult.getFieldErrors()) {
-                String fieldName = error.getField();
-                String errorMessage = error.getDefaultMessage();
-                if (errorMessage != null && errorMessage.startsWith("Failed to convert property value of type 'java.lang.String' to required type 'java.lang.Integer'")) {
-                    errorMessage = "Only enter whole numbers";
-                }
-                validationErrorMap.put(fieldName, errorMessage);
-            }
-
-            System.out.print(validationErrorMap);  // {weight=Weight must be less than 600,age='Age must be positive whole number'}
-//            model.addAttribute("validationErrors", bindingResult.getAllErrors());
+            Map<String, String> validationErrorMap = ErrorUtil.createErrorMap(bindingResult);
             model.addAttribute("validationErrorMap", validationErrorMap);
-            System.out.println(bindingResult.getAllErrors());
             return "donor_form";  // automatically receives model
         }
 
+        // No validation errors
         else {
+
             String resultMessage;
             List<String> ineligibleReasons = new ArrayList<>();
 
-            if (donor.getAge() < 17) {
-                ineligibleReasons.add("Age must be 17 or older");
+            // Check criteria
+            if (donor.getAge() < 16) {
+                ineligibleReasons.add("Age must be 16 or older");
             }
 
             if (donor.getWeight() < 110) {
                 ineligibleReasons.add("Weight must be 110 pounds or more");
             }
 
+            // Decide if user is eligible by checking the size of the list of ineligible reasons.
+            // if there are no ineligible reasons, the user must be eligible.
             if (ineligibleReasons.isEmpty()) {
                 resultMessage = "You may be eligible to donate blood";
             } else {
                 resultMessage = "You are not eligible to donate blood";
                 model.addAttribute("ineligibleReasons", ineligibleReasons);
-
             }
 
-            model.addAttribute("donor", donor);
+            // the donor information is part of the model
             model.addAttribute("resultMessage", resultMessage);
-
             return "results";
         }
     }
